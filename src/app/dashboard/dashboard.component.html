@@ -1,0 +1,30 @@
+<mat-drawer-container class="example-container" autosize>
+
+    <!-- SIDEBAR -->
+    <mat-drawer  #drawer class="example-sidenav" mode="side">
+        <ul>
+            <a href="">Inicio</a>
+            <li>Alumnos</li>
+            <li>Clases</li>
+            <li>Cursos</li>
+        </ul>
+    </mat-drawer>
+    <!-- FIN SIDEBAR -->
+
+    <!-- CONTENT WRAPPER -->
+    <div class="example-sidenav-content">
+        <!-- TOOLBAR -->
+        <mat-toolbar color="primary">
+            <button (click)="drawer.toggle()"  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <span>My App Ayala</span>      
+        </mat-toolbar>
+        <!-- FIN TOOLBAR -->
+
+        <main class="p-3">
+            <app-home></app-home>
+        </main>
+    </div>
+
+  </mat-drawer-container>
