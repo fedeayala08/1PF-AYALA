@@ -5,7 +5,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import { HomeModule } from './pages/home/home.module';
+import { HomeModule } from './pages/home/home.module'; 
+import { StudentsModule } from './pages/students/students.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HomeModule } from './pages/home/home.module';
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    HomeModule
+    HomeModule,
+    StudentsModule
   ],
   exports:[
     DashboardComponent

@@ -8,6 +8,7 @@
             <li>Clases</li>
             <li>Cursos</li>
         </ul>
+       
     </mat-drawer>
     <!-- FIN SIDEBAR -->
 
@@ -18,12 +19,13 @@
             <button (click)="drawer.toggle()"  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
               <mat-icon>menu</mat-icon>
             </button>
-            <span>My App Ayala</span>      
+            <span>My App Ayala</span>
         </mat-toolbar>
         <!-- FIN TOOLBAR -->
 
         <main class="p-3">
-            <app-home></app-home>
+            <!-- <app-home></app-home> -->
+            <app-students></app-students>
         </main>
     </div>
 

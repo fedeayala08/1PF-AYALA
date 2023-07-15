@@ -1,0 +1,13 @@
+<div class="mb-5">
+    <button (click)="onCreateStudent()" mat-flat-button color="primary" type="button">
+      <mat-icon>add</mat-icon>
+      Crear alumno
+    </button>
+  </div>
+
+<app-students-table  
+[dataSource]="students" 
+(deleteStudent)="OnDeleteStudent($event)"
+(editStudent)="OnEditStudent($event)"
+> 
+</app-students-table>
