@@ -3,12 +3,11 @@
     <!-- SIDEBAR -->
     <mat-drawer  #drawer class="example-sidenav" mode="side">
     
-        <ul>
-            <a href="">Inicio</a><br>
-            <a href="">Alumnos</a><br>
-            <a href="">Clases</a><br>
-            <a href="">Cursos</a>
-        </ul>
+        <mat-nav-list>
+            <a routerLink="home"  mat-list-item >Inicio</a>
+            <a routerLink="students" mat-list-item>Alumnos</a>
+            <a routerLink="/auth" mat-list-item>Cerrar</a>
+        </mat-nav-list>
      
     </mat-drawer>
     <!-- FIN SIDEBAR -->
@@ -25,8 +24,7 @@
         <!-- FIN TOOLBAR -->
 
         <main class="p-3">
-            <!-- <app-home></app-home> -->
-            <app-students></app-students>
+             <router-outlet></router-outlet>
         </main>
     </div>
 
