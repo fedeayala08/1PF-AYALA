@@ -9,11 +9,15 @@ import { HomeModule } from './pages/home/home.module';
 import { StudentsModule } from './pages/students/students.module';
 import {MatListModule} from '@angular/material/list';
 import { AppRoutingModule } from '../app-routing.module';
+import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
+import { ToolbarComponent } from './layout/toolbar/toolbar.component';
  
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    NavMenuComponent,
+    ToolbarComponent
   ],
   imports: [
     CommonModule,

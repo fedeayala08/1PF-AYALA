@@ -1,13 +1,14 @@
 <mat-drawer-container class="example-container" autosize>
 
     <!-- SIDEBAR -->
-    <mat-drawer  #drawer class="example-sidenav" mode="side">
-    
-        <mat-nav-list>
-            <a routerLink="home"  mat-list-item >Inicio</a>
-            <a routerLink="students" mat-list-item>Alumnos</a>
-            <a routerLink="/auth" mat-list-item>Cerrar</a>
-        </mat-nav-list>
+    <mat-drawer  
+    opened
+    mode="over"
+    #drawer 
+    class="example-sidenav"
+    mode="side"
+    >
+       <app-nav-menu></app-nav-menu>
      
     </mat-drawer>
     <!-- FIN SIDEBAR -->
@@ -15,12 +16,7 @@
     <!-- CONTENT WRAPPER -->
     <div class="example-sidenav-content">
         <!-- TOOLBAR -->
-        <mat-toolbar color="primary">
-            <button (click)="drawer.toggle()"  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-              <mat-icon>menu</mat-icon>
-            </button>
-            <span>My App Ayala</span>
-        </mat-toolbar>
+        <app-toolbar [drawer]="drawer"></app-toolbar>
         <!-- FIN TOOLBAR -->
 
         <main class="p-3">
