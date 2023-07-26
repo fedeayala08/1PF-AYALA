@@ -10,6 +10,8 @@ import { Student } from '../../models';
 })
 export class StudentsFormDialogComponent {
  
+  editingStudent?: Student;
+
   nameControl = new FormControl<string | null>(null, [Validators.required, Validators.minLength(3) ]);
   surnameControl = new FormControl<string | null>(null, [Validators.required]);
   emailControl = new FormControl<string | null>(null, [Validators.required ,Validators.email]);
@@ -29,6 +31,7 @@ export class StudentsFormDialogComponent {
     @Inject(MAT_DIALOG_DATA) private data?: Student,
   ) {
     if (this.data) {
+      this.editingStudent= this.data;
       this.nameControl.setValue(this.data.name);
       this.surnameControl.setValue(this.data.surname);
       this.emailControl.setValue(this.data.email);
