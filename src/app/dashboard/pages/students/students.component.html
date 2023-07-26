@@ -6,7 +6,7 @@
   </div>
 
 <app-students-table  
-[dataSource]="students" 
+[dataSource]="(students|async) || []" 
 (deleteStudent)="OnDeleteStudent($event)"
 (editStudent)="OnEditStudent($event)"
 > 

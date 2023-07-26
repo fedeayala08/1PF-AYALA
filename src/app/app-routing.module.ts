@@ -7,6 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/pages/login/login.component';
 import { registerLocaleData } from '@angular/common';
 import { RegisterComponent } from './auth/pages/register/register.component';
+import { StudentDetailComponent } from './dashboard/pages/students/pages/student-detail/student-detail.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,24 @@ const routes: Routes = [
         },
         {
           path: 'students',
-          component: StudentsComponent
+          children: [
+            {
+              path: '',
+              component: StudentsComponent,
+              data: {
+
+              }
+            },
+            {
+              path: ':id',
+              component: StudentDetailComponent
+            }
+          ]
+
+        },
+        {
+          path: '**',
+          redirectTo: 'home',
         }
      ] ,    
   },
@@ -37,9 +55,13 @@ const routes: Routes = [
       },
       {
         path: '**',
-        component:  LoginComponent
+        redirectTo: 'login'
       }
     ]
+  },
+  {
+    path: '**',
+    redirectTo: '/auth',
   }
  
 ];

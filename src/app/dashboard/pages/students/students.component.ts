@@ -2,27 +2,8 @@ import { Component } from '@angular/core';
 import { StudentsFormDialogComponent } from './components/students-form-dialog/students-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Student } from './models';
-import { ShowFullNamePipe } from 'src/app/shared/pipes/show-full-name.pipe';
-
-const ELEMENT_DATA: Student[] = [
-  {
-    id:1,
-    name: 'Fede',
-    surname: 'Ayala',
-    email: 'fedeayala08@hotmail.com',
-    gender:'M',
-    country: 'Argentina',
-  },
-  {
-    id:2,
-    name: 'Maria',
-    surname: 'Carrillo',
-    email: 'jca@gmail.com',
-    gender:'F',
-    country: 'Venezuela',
-  },
-];
-
+import { Observable, Subject } from 'rxjs';
+import { StudentService } from 'src/app/core/services/student.service';
 
 @Component({
   selector: 'app-students',
@@ -30,34 +11,34 @@ const ELEMENT_DATA: Student[] = [
   styleUrls: ['./students.component.scss']
 })
 export class StudentsComponent {
-  public students: Student[] = ELEMENT_DATA;
+  public students: Observable<Student[]> ;
+  public destroyed= new Subject<boolean>();
+  public loading= false;
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private matDialog: MatDialog,
+              private studentService: StudentService) {
+    this.studentService.loadStudent();
+    this.students= this.studentService.getStudents();
+  }
+
+  // ngOnDestroy(): void {
+  //   this.destroyed.next(true);
+  // }
 
   onCreateStudent(): void {
     this.matDialog
-      // ABRO EL MODAL
       .open(StudentsFormDialogComponent)
-      // Y DESPUES DE QUE CIERRE
       .afterClosed()
-      // HAGO ESTO...
       .subscribe({
         next: (v) => {
-          if (v) {       
-            this.students = [
-              ...this.students,
-              {
-                id: this.students.length + 1,
-                name: v.name,
-                surname: v.surname,
-                email: v.email,
-                gender: v.gender,
-                country: v.country
-              },
-            ];
-            console.log('RECIBIMOS EL VALOR: ', v);
-          } else {
-            console.log('SE CANCELO');
+          if (v) {
+            this.studentService.createStudent({
+              name: v.name,
+              surname:v.surname,
+              gender: v.gender,
+              email:v.email,
+              country:v.country
+            });
           }
         },
       });
@@ -66,30 +47,23 @@ export class StudentsComponent {
   OnDeleteStudent(studentToDelete: Student): void{
 
     if(confirm(`Se eliminara el usuario ${studentToDelete.name} ${studentToDelete.surname }`)){
-      this.students= this.students.filter(s=> s.id !== studentToDelete.id);
+      this.studentService.deleteStudentById(studentToDelete.id);
     }
   }
 
   OnEditStudent(studentToEdit: Student): void{
    this.matDialog
-   // ABRO EL MODAL
    .open(StudentsFormDialogComponent,{
     data: studentToEdit
    })
-   // AL CERRAR , ACTUALIZO EL USUARIO
    .afterClosed()
    .subscribe({
-    next: (studentUpdated)=>{
+    next: (studentUpdated)=> {
       if(studentUpdated){
-        this.students= this.students.map((student)=>{
-          return student.id===studentToEdit.id
-          ? {...student, ...studentUpdated} //true
-          : student //false
-        })
-      }
-    }}
-   )
-   
+        this.studentService.updateStudentById(studentToEdit.id,studentUpdated);
+       }
+      },
+    });
   }
 
 }
