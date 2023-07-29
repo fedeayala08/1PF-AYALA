@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Student } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'src/app/core/services/notifier.service';
+import { StudentService } from 'src/app/core/services/student.service';
 
 @Component({
   selector: 'app-student-detail',
@@ -9,20 +10,33 @@ import { NotifierService } from 'src/app/core/services/notifier.service';
   styleUrls: ['./student-detail.component.scss']
 })
 export class StudentDetailComponent {
-  public student : Student | null = null;
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private notification: NotifierService) {
+
+  public student : Student | undefined = undefined;
+  public studentId?:number;
+
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private router: Router, 
+    private notification: NotifierService,
+    private studentService: StudentService) {
     if (!Number(this.activatedRoute.snapshot.params['id'])) {
       this.router.navigate(['dashboard', 'students']);
       this.notification.showError(`${this.activatedRoute.snapshot.params['id']} no es un ID valido`);
+    }else{
+      this.studentId= Number(this.activatedRoute.snapshot.params['id']);
+      this.loadUser();
     }
   }
 
   loadUser(): void {
-    // couserService.getCoursesByUserId(this.activatedRoute.snapshot.paramMap.get('id')).
-    // usersService.getUserById(this.activatedRoute.snapshot.paramMap.get('id')).subscribe({
-    //   next: (user) => {
-    //     this.user = user;
-    //   }
-    // })
+    if(this.studentId){
+      this.studentService.getStudentById(this.studentId).subscribe({
+        next: (student)=> {
+          this.student= student;
+        }
+        
+      })
+    }
+    
   }
 }

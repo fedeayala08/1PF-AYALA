@@ -51,6 +51,14 @@ export class StudentService {
     ).subscribe(value =>{ this.maxValue$ = value});
   }
 
+  getStudentById(id: number): Observable<Student | undefined> {
+    
+    return this.student$.pipe(
+      map((students)=> students.find((s)=>s.id===id)),
+      take(1)
+      )
+  }
+
   createStudent(student : StudentCreation): void{
     this.getMaxID();
     this.student$.pipe(take(1)).subscribe({

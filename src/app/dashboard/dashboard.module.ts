@@ -11,6 +11,8 @@ import {MatListModule} from '@angular/material/list';
 import { AppRoutingModule } from '../app-routing.module';
 import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
+import { CoursesComponent } from './pages/courses/courses.component';
+import { CoursesModule } from './pages/courses/courses.module';
  
 
 @NgModule({
@@ -27,6 +29,7 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
     MatIconModule,
     HomeModule,
     StudentsModule,
+    CoursesModule,
     MatListModule,
     AppRoutingModule
   ],

@@ -8,6 +8,7 @@ import { LoginComponent } from './auth/pages/login/login.component';
 import { registerLocaleData } from '@angular/common';
 import { RegisterComponent } from './auth/pages/register/register.component';
 import { StudentDetailComponent } from './dashboard/pages/students/pages/student-detail/student-detail.component';
+import { CoursesComponent } from './dashboard/pages/courses/courses.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
 
         },
         {
+          path: 'courses',
+          component: CoursesComponent
+        },
+        {
           path: '**',
           redirectTo: 'home',
         }
@@ -61,7 +66,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/auth',
+    redirectTo: '/dashboard',
   }
  
 ];

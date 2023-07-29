@@ -1,4 +1,23 @@
 <button routerLink=".." mat-icon-button>
-    <mat-icon>arrow_back</mat-icon>
+    <mat-icon>arrow_back</mat-icon> 
   </button>
-<p>student-detail works!</p>
+<div class="grid">
+    <div class="col-6">
+        
+        <mat-card class="student-card">
+          <mat-card-header>  
+            <mat-icon><span>person</span></mat-icon>        
+            <mat-card-title>Detalle</mat-card-title>   
+              
+
+            <mat-card-subtitle><b>Nombre: </b>{{student?.name}}</mat-card-subtitle>
+            <mat-card-subtitle><b>Apellido: </b>{{student?.surname}}</mat-card-subtitle>
+            <mat-card-subtitle><b>Email: </b>{{student?.email}}</mat-card-subtitle>
+            <mat-card-subtitle><b>Genero: </b>{{student?.gender==='F' ? 'Femenino':'Masculino'}}</mat-card-subtitle>
+            <mat-card-subtitle><b>Pais: </b>{{student?.country}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+       
+    </div>
+</div>
+
