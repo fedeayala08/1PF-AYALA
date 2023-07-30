@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, delay, map, of, take } from 'rxjs';
-import { Course } from 'src/app/dashboard/pages/courses/models';
+import { Course, CourseCreation, CoursetEdition } from 'src/app/dashboard/pages/courses/models';
 import { NotifierService } from './notifier.service';
 
 const COURSE_DB : Observable<Course[]> = of( [
@@ -44,12 +44,12 @@ export class CourseService {
   
   getMaxID(): void {
     this.course$.pipe(
-      map(items => items.map(item => item.id)), // Obtener un array con los IDs
-      map(ids => Math.max(...ids)), // Encontrar el máximo ID
-    ).subscribe(value =>{ this.maxValue$ = value});
+      map(items => items.map(item => item.id)), 
+      map(ids => Math.max(...ids)), 
+    ).subscribe(value =>{this.maxValue$ = value});
   }
 
-  getStudentById(id: number): Observable<Course | undefined> {
+  getCourseById(id: number): Observable<Course | undefined> {
     
      return this.course$.pipe(
       map((courses)=> courses.find((s)=>s.id===id)),
@@ -57,38 +57,38 @@ export class CourseService {
        )
    }
 
-  // createStudent(student : StudentCreation): void{
-  //   this.getMaxID();
-  //   this.student$.pipe(take(1)).subscribe({
-  //     next: (arrayActual)=>{
-  //       this._student$.next([
-  //         ...arrayActual, {...student,id: this.maxValue$ +1 } ,
-  //       ]);
-  //       this.notifier.showSuccess('Alumno creado');
-  //     },
-  //   });
-  // }
+  createCourse(course : CourseCreation): void{
+    this.getMaxID();
+    this.course$.pipe(take(1)).subscribe({
+      next: (arrayActual)=>{
+        this._course$.next([
+          ...arrayActual, {...course,id: this.maxValue$ +1 } ,
+        ]);
+        this.notifier.showSuccess('Curso creado');
+      },
+    });
+  }
 
-  // updateStudentById( id: number, studentUpdated : StudentEdition):void{
-  //   this._student$.pipe(take(1)).subscribe({
-  //     next: (arrayActual)=>{
-  //       this._student$.next(
-  //         arrayActual.map((s)=>
-  //         s.id===id? {...s, ...studentUpdated} :s
-  //         )
-  //       );
-  //       this.notifier.showSuccess('Alumno actualizado');
-  //     },
-  //   });
+  updateCourseById( id: number, studentUpdated : CoursetEdition):void{
+    this._course$.pipe(take(1)).subscribe({
+      next: (arrayActual)=>{
+        this._course$.next(
+          arrayActual.map((c)=>
+          c.id===id? {...c, ...studentUpdated} :c
+          )
+        );
+        this.notifier.showSuccess('Curso actualizado');
+      },
+    });
 
-  // } 
+  } 
 
-  // deleteStudentById(id:number): void{
-  //   this._student$.pipe(take(1)).subscribe({
-  //     next: (arrayActual)=>{
-  //       this._student$.next(arrayActual.filter((s)=> s.id!== id));
-  //       this.notifier.showSuccess('Alumno eliminado');
-  //     },
-  //   });
-  // }
+  deleteStudentById(id:number): void{
+    this._course$.pipe(take(1)).subscribe({
+      next: (arrayActual)=>{
+        this._course$.next(arrayActual.filter((s)=> s.id!== id));
+        this.notifier.showSuccess('Curso eliminado');
+      },
+    });
+  }
 }

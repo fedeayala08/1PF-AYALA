@@ -12,6 +12,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { ControlErrorMessagePipe } from './pipes/control-error-message.pipe';
 import { ShowFullNamePipe } from './pipes/show-full-name.pipe';
 import { SizeTitleDirective } from './directives/size-title.directive';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { SizeTitleDirective } from './directives/size-title.directive';
     MatTableModule,
     ShowFullNamePipe,
     ControlErrorMessagePipe,   
-    SizeTitleDirective 
+    SizeTitleDirective ,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class SharedModule { }

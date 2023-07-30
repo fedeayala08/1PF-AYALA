@@ -46,8 +46,8 @@ export class StudentService {
 
   getMaxID(): void {
     this.student$.pipe(
-      map(items => items.map(item => item.id)), // Obtener un array con los IDs
-      map(ids => Math.max(...ids)), // Encontrar el máximo ID
+      map(items => items.map(item => item.id)),  
+      map(ids => Math.max(...ids)),  
     ).subscribe(value =>{ this.maxValue$ = value});
   }
 

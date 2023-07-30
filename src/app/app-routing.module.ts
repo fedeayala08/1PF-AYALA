@@ -5,10 +5,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentsComponent } from './dashboard/pages/students/students.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/pages/login/login.component';
-import { registerLocaleData } from '@angular/common';
 import { RegisterComponent } from './auth/pages/register/register.component';
 import { StudentDetailComponent } from './dashboard/pages/students/pages/student-detail/student-detail.component';
 import { CoursesComponent } from './dashboard/pages/courses/courses.component';
+import { CourseDetailComponent } from './dashboard/pages/courses/pages/course-detail/course-detail.component';
 
 const routes: Routes = [
   {
@@ -38,7 +38,17 @@ const routes: Routes = [
         },
         {
           path: 'courses',
-          component: CoursesComponent
+          children :[
+            {
+              path:'' ,
+              component: CoursesComponent,
+              data:{}
+            },
+            {
+              path: ':id',
+              component:CourseDetailComponent
+            }
+          ]
         },
         {
           path: '**',

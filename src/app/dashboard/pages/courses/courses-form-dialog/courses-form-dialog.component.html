@@ -1,0 +1,73 @@
+<h1 mat-dialog-title> 
+    {{
+        editingCourse ? 'Editando el curso ' + editingCourse.title   
+      :"Crear courso"
+    }}
+  </h1>
+  
+  <div mat-dialog-content>
+    <form [formGroup]="courseForm" class="grid">
+  
+      <div class="col-6 field">
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Titulo</mat-label>
+          <input formControlName="title" matInput type="text" name="title" />
+          <mat-error *ngFor="let error of titleControl.errors | keyvalue">
+            {{ error | controlErrorMessage }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    
+       <div class="col-6 field">
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Descripcion</mat-label>
+          <input formControlName="description" matInput type="text" name="description" />
+  
+          <mat-error *ngFor="let error of descriptionControl.errors | keyvalue">
+            {{ error | controlErrorMessage }}
+          </mat-error>
+  
+        </mat-form-field>
+      </div>
+  
+  
+      <div class="field col-6">
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Fecha Inicio</mat-label>         
+          <input matInput formControlName="startDate" [matDatepicker]="pickerIni">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="pickerIni"></mat-datepicker-toggle>
+          <mat-datepicker #pickerIni></mat-datepicker>
+          
+          
+          <mat-error *ngFor="let error of startDateControl.errors | keyvalue">
+            {{ error | controlErrorMessage }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      
+      <div class="field col-6">
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Fecha Fin</mat-label>
+          <input matInput formControlName="endDate" [matDatepicker]="pickerEnd">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+          <mat-datepicker #pickerEnd></mat-datepicker>
+          
+          
+          <mat-error *ngFor="let error of endDateControl.errors | keyvalue">
+            {{ error | controlErrorMessage }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+         
+    
+    </form>
+  </div>
+  <div class="flex justify-content-end" mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button (click)="onSubmit()" type="submit" mat-button>Guardar</button>
+  </div>
+  
+  
