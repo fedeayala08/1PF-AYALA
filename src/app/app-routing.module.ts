@@ -9,6 +9,8 @@ import { RegisterComponent } from './auth/pages/register/register.component';
 import { StudentDetailComponent } from './dashboard/pages/students/pages/student-detail/student-detail.component';
 import { CoursesComponent } from './dashboard/pages/courses/courses.component';
 import { CourseDetailComponent } from './dashboard/pages/courses/pages/course-detail/course-detail.component';
+import { UsersComponent } from './dashboard/pages/users/users.component';
+import { UserDetailComponent } from './dashboard/pages/users/pages/user-detail/user-detail.component';
 
 const routes: Routes = [
   {
@@ -47,6 +49,21 @@ const routes: Routes = [
             {
               path: ':id',
               component:CourseDetailComponent
+            }
+          ]
+        },
+        {
+          path: 'users',
+        
+          children :[
+            {
+              path:'' ,
+              component: UsersComponent,
+              data:{}
+            },
+            {
+              path: ':id',
+              component:UserDetailComponent
             }
           ]
         },

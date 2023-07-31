@@ -3,7 +3,7 @@ import { Course } from './models';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CourseService } from 'src/app/core/services/course.service';
-import { CoursesFormDialogComponent } from './courses-form-dialog/courses-form-dialog.component';
+import { CoursesFormDialogComponent } from './components/courses-form-dialog/courses-form-dialog.component';
 
 @Component({
   selector: 'app-courses',

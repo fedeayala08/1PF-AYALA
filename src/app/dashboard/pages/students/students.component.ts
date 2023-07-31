@@ -12,7 +12,6 @@ import { StudentService } from 'src/app/core/services/student.service';
 })
 export class StudentsComponent {
   public students: Observable<Student[]> ;
-  public destroyed= new Subject<boolean>();
   public loading= false;
 
   constructor(private matDialog: MatDialog,
@@ -21,9 +20,6 @@ export class StudentsComponent {
     this.students= this.studentService.getStudents();
   }
 
-  // ngOnDestroy(): void {
-  //   this.destroyed.next(true);
-  // }
 
   onCreateStudent(): void {
     this.matDialog
@@ -46,7 +42,7 @@ export class StudentsComponent {
 
   OnDeleteStudent(studentToDelete: Student): void{
 
-    if(confirm(`Se eliminara el usuario ${studentToDelete.name} ${studentToDelete.surname }`)){
+    if(confirm(`Se eliminara el alumno ${studentToDelete.name} ${studentToDelete.surname }`)){
       this.studentService.deleteStudentById(studentToDelete.id);
     }
   }

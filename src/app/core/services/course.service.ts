@@ -8,15 +8,15 @@ const COURSE_DB : Observable<Course[]> = of( [
     id:1,
     title: 'Curso Java',
     description: 'Java basico',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date('01/07/2023'),
+    endDate: new Date('08/07/2023'),
   },
   {
     id:2,
     title: 'Curso .NET',
     description: 'Net basico',
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: new Date('09/09/2023'),
+    endDate: new Date('12/09/2023'),
   },
 
 ]).pipe(delay(1000));

@@ -8,9 +8,10 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AuthModule } from './auth/auth.module';
 import { MatCardModule } from '@angular/material/card';
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

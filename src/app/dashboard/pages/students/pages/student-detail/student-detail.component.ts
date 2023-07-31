@@ -24,11 +24,11 @@ export class StudentDetailComponent {
       this.notification.showError(`${this.activatedRoute.snapshot.params['id']} no es un ID valido`);
     }else{
       this.studentId= Number(this.activatedRoute.snapshot.params['id']);
-      this.loadUser();
+      this.loadStudent();
     }
   }
 
-  loadUser(): void {
+  loadStudent(): void {
     if(this.studentId){
       this.studentService.getStudentById(this.studentId).subscribe({
         next: (student)=> {

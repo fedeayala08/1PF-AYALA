@@ -15,6 +15,7 @@ import { SizeTitleDirective } from './directives/size-title.directive';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+
 @NgModule({
   declarations: [
     ControlErrorMessagePipe,
@@ -36,6 +37,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatTableModule,
     ShowFullNamePipe,
+
     ControlErrorMessagePipe,   
     SizeTitleDirective ,
     MatDatepickerModule,
