@@ -7,6 +7,7 @@ import { StudentsFormDialogComponent } from './components/students-form-dialog/s
 import { MatDialog } from '@angular/material/dialog';
 import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
 import { RouterModule } from '@angular/router';
+import { StudentsRoutingModule } from './students-routing.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports:[
-    StudentsComponent
+    StudentsComponent,
+    StudentsRoutingModule
   ]
 })
 export class StudentsModule {

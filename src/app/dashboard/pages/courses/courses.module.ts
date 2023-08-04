@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CoursesFormDialogComponent } from './components/courses-form-dialog/courses-form-dialog.component';
 import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 
 
@@ -19,7 +20,8 @@ import { CourseDetailComponent } from './pages/course-detail/course-detail.compo
     RouterModule
   ],
   exports:[
-    CoursesComponent
+    CoursesComponent,
+    CoursesRoutingModule
   ]
 })
 export class CoursesModule { }

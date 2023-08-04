@@ -6,6 +6,7 @@ import { UsersFormDialogComponent } from './components/users-form-dialog/users-f
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserDetailComponent } from './pages/user-detail/user-detail.component';
 import { RouterModule } from '@angular/router';
+import { UserRoutingModule } from './users-routing.module';
 
 
 
@@ -22,7 +23,8 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports:[
-    UsersComponent
+    UsersComponent,
+    UserRoutingModule
   ]
 })
 export class UsersModule { }
