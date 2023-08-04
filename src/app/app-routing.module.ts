@@ -11,10 +11,12 @@ import { CoursesComponent } from './dashboard/pages/courses/courses.component';
 import { CourseDetailComponent } from './dashboard/pages/courses/pages/course-detail/course-detail.component';
 import { UsersComponent } from './dashboard/pages/users/users.component';
 import { UserDetailComponent } from './dashboard/pages/users/pages/user-detail/user-detail.component';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'dashboard',
+    canActivate: [authGuard],
     component: DashboardComponent, 
     loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
   },
