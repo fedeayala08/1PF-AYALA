@@ -1,54 +1,43 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, delay, map, of, take } from 'rxjs';
+import { BehaviorSubject, Observable, delay, map, mergeMap, of, take } from 'rxjs';
 import { CreateUserData, UpdateUserData, User } from 'src/app/dashboard/pages/users/models';
 import { NotifierService } from './notifier.service';
+import { HttpClient } from '@angular/common/http';
 
-const USER_DB : Observable<User[]> = of( [
-  {
-    id:1,
-    name: 'Jose',
-    surname: 'Domingo',
-    email: 'JD@gmail.com',
-    password: '123JDMejor',
-    token: 'tyyyrueio234',
-    role: 'Administrador'
-    
-  },
-  {
-    id:2,
-    name: 'Julia',
-    surname: 'Quimey',
-    email: 'JK@gmail.com',
-    password: '1234Nurse',
-    token: 'djadoiopep0',
-    role: 'Tester'
-  },
-
-]).pipe(delay(1000));
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private _user$= new BehaviorSubject<User[]>([]);
-  private user$= this._user$.asObservable();
+  private _users$= new BehaviorSubject<User[]>([]);
+  private users$= this._users$.asObservable();
   private maxValue$: number=0;
 
-  constructor(private notiService: NotifierService) { }
+  constructor(private notiService: NotifierService,
+            private httpClient : HttpClient) { }
 
-  loadUser(): void{
-    USER_DB.subscribe({
-      next:(userFromDB)=> this._user$.next(userFromDB),
-    });
+  loadUsers(): void{
+    this.httpClient.get<User[]>('http://localhost:3000/users').subscribe({
+      next: (response)=> {
+        this._users$.next(response);
+      },
+      error: () => {
+        this.notiService.showError('Error al cargar los usuarios');
+      },
+      complete:() => {
+      }
+    })
+    
+    
   }
   
   getUsers(): Observable<User[]>{
-    return this._user$;
+    return this._users$;
   }
 
   getMaxID(): void {
-    this.user$.pipe(
+    this.users$.pipe(
       map(items => items.map(item => item.id)),  
       map(ids => Math.max(...ids)),  
     ).subscribe(value =>{ this.maxValue$ = value});
@@ -56,45 +45,46 @@ export class UserService {
 
   getUserById(id: number): Observable<User | undefined> {
     
-    return this.user$.pipe(
+    return this.users$.pipe(
       map((users)=> users.find((s)=>s.id===id)),
       take(1)
       )
   }
 
-  createUser(user : CreateUserData): void{
-    this.getMaxID();
-    this.user$.pipe(take(1)).subscribe({
-      next: (arrayActual)=>{
-        this._user$.next([
-          ...arrayActual, {...user,id: this.maxValue$ +1 } ,
-        ]);
+  createUser(payLoad : CreateUserData): void{
+  
+    this.httpClient.post<User>('http://localhost:3000/users',payLoad).pipe(
+      mergeMap((userCreate) => this.users$.pipe(
+        take(1),
+        map(
+          (arrayActual) => [...arrayActual, userCreate])
+        )
+      )
+    )
+    .subscribe({
+      next: (arrayActualizado) => {
+        this._users$.next(arrayActualizado);
         this.notiService.showSuccess('Usuario creado');
-      },
-    });
+      }
+    }) 
   }
 
   updateUserById( id: number, userUpdated : UpdateUserData):void{
-    this._user$.pipe(take(1)).subscribe({
-      next: (arrayActual)=>{
-        this._user$.next(
-          arrayActual.map((s)=>
-          s.id===id? {...s, ...userUpdated} :s
-          )
-        );
-        this.notiService.showSuccess('Usuario actualizado');
-      },
-    });
+    this.httpClient.put('http://localhost:3000/users/' + id, userUpdated).subscribe({
+      next: () => {this.loadUsers();
+      this.notiService.showSuccess('Usuario actualizado');
+      }
+    })
 
   } 
 
   deleteUserById(id:number): void{
-    this._user$.pipe(take(1)).subscribe({
-      next: (arrayActual)=>{
-        this._user$.next(arrayActual.filter((s)=> s.id!== id));
-        this.notiService.showSuccess('Usuario eliminado');
-      },
-    });
+   this.httpClient.delete('http://localhost:3000/users/'+ id).subscribe({
+    next: ()=> {this.loadUsers();
+      this.notiService.showSuccess('Usuario eliminado');
+    }
+    
+   })
   }
 
 

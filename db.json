@@ -1,0 +1,23 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Jose",
+      "surname": "Martinez",
+      "email": "JD@gmail.com",
+      "password": "123JDMejor",
+      "token": "tyyyrueio234",
+      "role": "Administrador"
+    },
+    {
+      "id": 2,
+      "name": "Julia",
+      "surname": "Quimey",
+      "email": "JK@gmail.com",
+      "password": "1234Nurse",
+      "token": "djadoiopep0",
+      "role": "Tester"
+    }
+  ],
+  "students": []
+}

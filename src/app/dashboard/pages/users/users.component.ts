@@ -17,7 +17,7 @@ export class UsersComponent {
   constructor(private matDialog: MatDialog,
     private userService: UserService){
 
-    this.userService.loadUser();
+    this.userService.loadUsers();
     this.users = this.userService.getUsers();
 
   }
