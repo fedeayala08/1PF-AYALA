@@ -4,7 +4,7 @@ import { LoginPayload } from "src/app/auth/models";
 import { User } from "src/app/dashboard/pages/users/models";
 import { NotifierService } from "./notifier.service";
 import { Router } from "@angular/router";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -43,6 +43,19 @@ import { HttpClient } from "@angular/common/http";
                 this._authUser$.next(null);
               }
             },
+            error: (err)=>{
+                if(err instanceof HttpErrorResponse){
+                    let message= 'Ocurrio un error inesperado';
+                    if(err.status===500){
+                        message= "Error en servidor";
+                    }
+                    if(err.status===401){
+                        message= "Email o contrasena invalida"
+                    }
+                    this.notifier.showError(message);
+                }
+                
+            }
           })
         
 
