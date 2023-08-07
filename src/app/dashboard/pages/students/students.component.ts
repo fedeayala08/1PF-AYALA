@@ -16,7 +16,7 @@ export class StudentsComponent {
 
   constructor(private matDialog: MatDialog,
               private studentService: StudentService) {
-    this.studentService.loadStudent();
+    this.studentService.loadStudents();
     this.students= this.studentService.getStudents();
   }
 

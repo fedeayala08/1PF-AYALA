@@ -4,6 +4,7 @@ import { LoginPayload } from "src/app/auth/models";
 import { User } from "src/app/dashboard/pages/users/models";
 import { NotifierService } from "./notifier.service";
 import { Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,8 @@ import { Router } from "@angular/router";
   export class AuthService {
 
     constructor(private notifier: NotifierService ,
-                private router: Router){}
+                private router: Router,
+                private httpClient: HttpClient){}
 
     private _authUser$= new BehaviorSubject<User| null>(null);
     public authUser$= this._authUser$.asObservable();
@@ -25,25 +27,23 @@ import { Router } from "@angular/router";
     }
 
     login(payLoad: LoginPayload): void{
-        
-        const MOCK_USER: User={
-            id: 50,
-            name: 'Fede',
-            surname: 'MND',
-            email: 'fede@fede.com',
-            password: '1234',
-            token: 'fff',
-            role: 'fff',
-        }
-        
-        if(payLoad.email===MOCK_USER.email && payLoad.password=== MOCK_USER.password)
-        {
-            this._authUser$.next(MOCK_USER);
-            this.router.navigate(['/dashboard']);
-        }else{
-            this.notifier.showError('Email o contrasena invalida');
-            this._authUser$.next(null);
-        }
+              
+        this.httpClient.get<User[]>('http://localhost:3000/users', {
+            params: {
+              email: payLoad.email || '',
+              password: payLoad.password || ''
+            }
+          }).subscribe({
+            next: (response) => {
+              if (response.length) {
+                this._authUser$.next(response[0]);
+                this.router.navigate(['/dashboard']);
+              } else {
+                this.notifier.showError('Email o contrasena invalida');
+                this._authUser$.next(null);
+              }
+            },
+          })
         
 
     }

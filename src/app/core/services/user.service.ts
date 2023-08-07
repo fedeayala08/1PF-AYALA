@@ -12,7 +12,6 @@ export class UserService {
 
   private _users$= new BehaviorSubject<User[]>([]);
   private users$= this._users$.asObservable();
-  private maxValue$: number=0;
 
   constructor(private notiService: NotifierService,
             private httpClient : HttpClient) { }
@@ -34,13 +33,6 @@ export class UserService {
   
   getUsers(): Observable<User[]>{
     return this._users$;
-  }
-
-  getMaxID(): void {
-    this.users$.pipe(
-      map(items => items.map(item => item.id)),  
-      map(ids => Math.max(...ids)),  
-    ).subscribe(value =>{ this.maxValue$ = value});
   }
 
   getUserById(id: number): Observable<User | undefined> {

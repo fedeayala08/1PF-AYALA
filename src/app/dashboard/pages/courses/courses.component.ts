@@ -17,7 +17,7 @@ export class CoursesComponent {
   constructor(private matDialog: MatDialog,
     private courseService : CourseService
   ){
-    this.courseService.loadCourse();
+    this.courseService.loadCourses();
     this.courses= this.courseService.getCourse();
 
   }

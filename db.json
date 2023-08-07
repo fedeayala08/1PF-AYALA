@@ -2,10 +2,10 @@
   "users": [
     {
       "id": 1,
-      "name": "Jose",
+      "name": "Federico",
       "surname": "Martinez",
-      "email": "JD@gmail.com",
-      "password": "123JDMejor",
+      "email": "fede@fede.com",
+      "password": "1234",
       "token": "tyyyrueio234",
       "role": "Administrador"
     },
@@ -19,5 +19,45 @@
       "role": "Tester"
     }
   ],
-  "students": []
+  "students": [
+    {
+      "id": 1,
+      "name": "Fede",
+      "surname": "Ayala",
+      "email": "fedeayala08@hotmail.com",
+      "gender": "M",
+      "country": "Argentina"
+    },
+    {
+      "name": "Maria",
+      "surname": "Carrillo",
+      "email": "jca@gmail.com",
+      "gender": "F",
+      "country": "Venezuela",
+      "id": 2
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Curso Java",
+      "description": "Java basico",
+      "startDate": "2023-01-09T22:00:00.000Z",
+      "endDate": "2023-07-09T22:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Curso .NET",
+      "description": "Net basico",
+      "startDate": "2023-09-09T22:00:00.000Z",
+      "endDate": "2023-12-09T22:00:00.000Z"
+    },
+    {
+      "title": "gffdadfad",
+      "description": "dadfad",
+      "startDate": "2023-08-22T22:00:00.000Z",
+      "endDate": "2023-08-23T22:00:00.000Z",
+      "id": 3
+    }
+  ]
 }
