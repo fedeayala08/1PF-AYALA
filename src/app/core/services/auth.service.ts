@@ -5,6 +5,7 @@ import { User } from "src/app/dashboard/pages/users/models";
 import { NotifierService } from "./notifier.service";
 import { Router } from "@angular/router";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -20,28 +21,37 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 
 
     isAuthenticated(): Observable<boolean>{
-        return this.authUser$.pipe(
-            take(1),
-            map((user) => !!user),
-          );
+        return this.httpClient.get<User[]>(environment.baseApiUrl + '/users', {
+            params: {
+              token: localStorage.getItem('token') || '',
+            }
+          }).pipe(
+            map((usersResult) => {
+              return !!usersResult.length
+            })
+          )
     }
 
     login(payLoad: LoginPayload): void{
               
-        this.httpClient.get<User[]>('http://localhost:3000/users', {
+        this.httpClient.get<User[]>(environment.baseApiUrl + '/users', {
             params: {
               email: payLoad.email || '',
               password: payLoad.password || ''
             }
           }).subscribe({
             next: (response) => {
-              if (response.length) {
-                this._authUser$.next(response[0]);
-                this.router.navigate(['/dashboard']);
-              } else {
-                this.notifier.showError('Email o contrasena invalida');
-                this._authUser$.next(null);
-              }
+                if (response.length) {
+                    const authUser = response[0];
+                    this._authUser$.next(authUser);
+          
+                    this.router.navigate(['/dashboard']);
+
+                    localStorage.setItem('token', authUser.token);
+                  } else { 
+                    this.notifier.showError('Email o contrasena invalida');
+                    this._authUser$.next(null);
+                  }
             },
             error: (err)=>{
                 if(err instanceof HttpErrorResponse){

@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable,  map,  mergeMap,  take } from 'rxjs';
 import { Course, CourseCreation, CoursetEdition } from 'src/app/dashboard/pages/courses/models';
 import { NotifierService } from './notifier.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class CourseService {
     private httpClient: HttpClient) { }
 
   loadCourses(): void{
-    this.httpClient.get<Course[]>("http://localhost:3000/courses").subscribe({
+    this.httpClient.get<Course[]>(environment.baseApiUrl + '/courses').subscribe({
       next: (users) => this._courses$.next(users)
     })
   }
@@ -35,7 +36,7 @@ export class CourseService {
    }
 
   createCourse(payLoad : CourseCreation): void{
-    this.httpClient.post<Course>('http://localhost:3000/courses',payLoad).pipe(
+    this.httpClient.post<Course>(environment.baseApiUrl + '/courses',payLoad).pipe(
       mergeMap((courseCreated) => this.courses$.pipe(
         take(1),
         map(
@@ -52,7 +53,7 @@ export class CourseService {
   }
 
   updateCourseById( id: number, courseUpdated : CoursetEdition):void{
-    this.httpClient.put('http://localhost:3000/courses/' + id, courseUpdated).subscribe({
+    this.httpClient.put(environment.baseApiUrl + '/courses/' + id, courseUpdated).subscribe({
       next: () => {this.loadCourses();
       this.notifier.showSuccess('Curso actualizado');
       }
@@ -60,7 +61,7 @@ export class CourseService {
   } 
 
   deleteStudentById(id:number): void{
-    this.httpClient.delete('http://localhost:3000/courses/' + id).subscribe({
+    this.httpClient.delete(environment.baseApiUrl + '/courses/' + id).subscribe({
       next: () => {this.loadCourses();
       this.notifier.showSuccess('Curso eliminado');
       }
