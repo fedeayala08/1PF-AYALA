@@ -6,6 +6,8 @@ import { NotifierService } from "./notifier.service";
 import { Router } from "@angular/router";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+import { Store } from "@ngrx/store";
+import { AuthActions } from "src/app/store/auth/auth.actions";
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +16,8 @@ import { environment } from "src/environments/environment";
 
     constructor(private notifier: NotifierService ,
                 private router: Router,
-                private httpClient: HttpClient){}
+                private httpClient: HttpClient,
+                private store: Store,){}
 
     private _authUser$= new BehaviorSubject<User| null>(null);
     public authUser$= this._authUser$.asObservable();
@@ -27,13 +30,19 @@ import { environment } from "src/environments/environment";
             }
           }).pipe(
             map((usersResult) => {
+
+              if (usersResult.length) {
+                const authUser = usersResult[0];
+              
+                this.store.dispatch(AuthActions.setAuthUser({ payload: authUser }));
+              }
               return !!usersResult.length
             })
           )
     }
 
     login(payLoad: LoginPayload): void{
-              
+
         this.httpClient.get<User[]>(environment.baseApiUrl + '/users', {
             params: {
               email: payLoad.email || '',
@@ -43,14 +52,16 @@ import { environment } from "src/environments/environment";
             next: (response) => {
                 if (response.length) {
                     const authUser = response[0];
-                    this._authUser$.next(authUser);
-          
+                  
+                    this.store.dispatch(AuthActions.setAuthUser({payload: authUser}));
+
                     this.router.navigate(['/dashboard']);
 
                     localStorage.setItem('token', authUser.token);
-                  } else { 
+                  } else {
                     this.notifier.showError('Email o contrasena invalida');
-                    this._authUser$.next(null);
+                    
+                    this.store.dispatch(AuthActions.setAuthUser({payload: null}));
                   }
             },
             error: (err)=>{
@@ -64,10 +75,14 @@ import { environment } from "src/environments/environment";
                     }
                     this.notifier.showError(message);
                 }
-                
+
             }
           })
-        
 
+
+    }
+
+    public logout(): void {
+       this.store.dispatch(AuthActions.setAuthUser({ payload: null }))
     }
   }

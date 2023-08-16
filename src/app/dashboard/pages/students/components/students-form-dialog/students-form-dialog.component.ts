@@ -16,7 +16,7 @@ export class StudentsFormDialogComponent {
   surnameControl = new FormControl<string | null>(null, [Validators.required]);
   emailControl = new FormControl<string | null>(null, [Validators.required ,Validators.email]);
   genderControl = new FormControl<string | null>(null, [Validators.required]);
-  countryControl = new FormControl<string | null>(null);
+  countryControl = new FormControl<string | null>(null,[Validators.required]);
 
   studentForm = new FormGroup({
     name: this.nameControl,

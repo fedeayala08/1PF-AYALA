@@ -35,6 +35,14 @@
       "gender": "F",
       "country": "Venezuela",
       "id": 2
+    },
+    {
+      "name": "Jose",
+      "surname": "Martinea",
+      "gender": "M",
+      "email": "jm23@hotmail.com",
+      "country": "Argentina",
+      "id": 3
     }
   ],
   "courses": [

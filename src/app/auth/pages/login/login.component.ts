@@ -9,8 +9,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class LoginComponent {
 
-  public emailControl = new FormControl('fede@fede.com', [Validators.required, Validators.email]);
-  public passwordControl = new FormControl('1234', [Validators.required]);
+  public emailControl = new FormControl('', [Validators.required, Validators.email]);
+  public passwordControl = new FormControl('', [Validators.required]);
 
   public loginForm = new FormGroup({
     email: this.emailControl,
