@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable,  map,  mergeMap,  take } from 'rxjs';
-import { Course, CourseCreation, CoursetEdition } from 'src/app/dashboard/pages/courses/models';
+import { Course, CourseCreation,  CoursetEdition } from 'src/app/dashboard/pages/courses/models';
 import { NotifierService } from './notifier.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -18,8 +18,8 @@ export class CourseService {
     private httpClient: HttpClient) { }
 
   loadCourses(): void{
-    this.httpClient.get<Course[]>(environment.baseApiUrl + '/courses').subscribe({
-      next: (users) => this._courses$.next(users)
+    this.httpClient.get<Course[]>(environment.baseApiUrl + '/courses?_expand=subject').subscribe({
+      next: (courses) => this._courses$.next(courses)
     })
   }
   
@@ -34,6 +34,10 @@ export class CourseService {
        take(1)
        )
    }
+
+   getCoursesBySubjectId(subjectId: number): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(environment.baseApiUrl + `/courses?subjectId=${subjectId}`)
+  }
 
   createCourse(payLoad : CourseCreation): void{
     this.httpClient.post<Course>(environment.baseApiUrl + '/courses',payLoad).pipe(

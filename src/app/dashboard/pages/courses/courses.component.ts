@@ -19,7 +19,7 @@ export class CoursesComponent {
   ){
     this.courseService.loadCourses();
     this.courses= this.courseService.getCourse();
-
+    
   }
 
   
@@ -33,6 +33,7 @@ export class CoursesComponent {
             this.courseService.createCourse({
               title: c.title,
               description: c.description,
+              subjectId: c.subjectId,
               startDate: c.startDate,
               endDate: c.endDate
             });

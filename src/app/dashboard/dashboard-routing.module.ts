@@ -1,13 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { StudentsComponent } from './pages/students/students.component';
-import { StudentDetailComponent } from './pages/students/pages/student-detail/student-detail.component';
-import { CoursesComponent } from './pages/courses/courses.component';
-import { CourseDetailComponent } from './pages/courses/pages/course-detail/course-detail.component';
-import { UsersComponent } from './pages/users/users.component';
-import { UserDetailComponent } from './pages/users/pages/user-detail/user-detail.component';
-
 
 @NgModule({
     imports: [
@@ -28,6 +21,10 @@ import { UserDetailComponent } from './pages/users/pages/user-detail/user-detail
         {
           path: 'users',
           loadChildren: () => import('./pages/users/users.module').then((m) => m.UsersModule),
+        },
+        {
+          path: 'subjects',
+          loadChildren: () => import('./pages/subjects/subjects.module').then((m) => m.SubjectsModule),
         },
         {
           path: '**',

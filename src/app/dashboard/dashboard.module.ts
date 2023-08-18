@@ -7,13 +7,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { HomeModule } from './pages/home/home.module'; 
 import { StudentsModule } from './pages/students/students.module';
-import {MatListModule} from '@angular/material/list';
-import { AppRoutingModule } from '../app-routing.module';
+import { MatListModule} from '@angular/material/list';
 import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { CoursesModule } from './pages/courses/courses.module';
 import { UsersModule } from './pages/users/users.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { SubjectsModule } from './pages/subjects/subjects.module';
  
 
 @NgModule({
