@@ -14,12 +14,14 @@ import { ShowFullNamePipe } from './pipes/show-full-name.pipe';
 import { SizeTitleDirective } from './directives/size-title.directive';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ShowSubjectNamePipe } from './pipes/showSubjectName.pipe';
 
 
 @NgModule({
   declarations: [
     ControlErrorMessagePipe,
     ShowFullNamePipe,
+    ShowSubjectNamePipe,
     SizeTitleDirective
   ],
   imports: [
@@ -37,7 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatTableModule,
     ShowFullNamePipe,
-
+    ShowSubjectNamePipe,
     ControlErrorMessagePipe,   
     SizeTitleDirective ,
     MatDatepickerModule,

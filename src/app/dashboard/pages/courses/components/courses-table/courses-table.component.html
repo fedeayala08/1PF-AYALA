@@ -22,7 +22,7 @@
     <!-- Subject Column -->
     <ng-container matColumnDef="subject">
       <th  appSizeTitle="20px" mat-header-cell *matHeaderCellDef> Materia </th>
-      <td mat-cell *matCellDef="let course"> {{course.subject.name}} </td>
+      <td mat-cell *matCellDef="let course"> {{course.subjectId | showSubjectName}} </td>
     </ng-container>
 
     <!-- Date INI Column -->

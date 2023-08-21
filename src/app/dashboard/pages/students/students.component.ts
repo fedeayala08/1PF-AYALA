@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { StudentsFormDialogComponent } from './components/students-form-dialog/students-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Student } from './models';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { StudentService } from 'src/app/core/services/student.service';
 
 @Component({

@@ -70,19 +70,6 @@
       "endDate": "2023-10-26T22:00:00.000Z",
       "id": 3
     }
-  ],
-  "subjects": [
-    {
-      "id": 1,
-      "name": "Programacion"
-    },
-    {
-      "id": 2,
-      "name": "Management"
-    },
-    {
-      "id": 3,
-      "name": "I.A."
-    }
   ]
+  
 }
