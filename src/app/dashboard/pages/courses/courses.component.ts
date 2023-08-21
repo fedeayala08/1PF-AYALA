@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { CourseService } from 'src/app/core/services/course.service';
 import { CoursesFormDialogComponent } from './components/courses-form-dialog/courses-form-dialog.component';
+import { Store } from '@ngrx/store';
+import { selectIfAuthUserRoleIsAdmin } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-courses',
@@ -13,13 +15,15 @@ import { CoursesFormDialogComponent } from './components/courses-form-dialog/cou
 export class CoursesComponent {
 
   public courses: Observable<Course[]> ;
+  public isAdmin$ :  Observable<boolean> ;
 
   constructor(private matDialog: MatDialog,
-    private courseService : CourseService
+    private courseService : CourseService,
+    private store: Store
   ){
     this.courseService.loadCourses();
     this.courses= this.courseService.getCourse();
-    
+    this.isAdmin$= this.store.select(selectIfAuthUserRoleIsAdmin);
   }
 
   

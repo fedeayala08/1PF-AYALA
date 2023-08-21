@@ -1,5 +1,8 @@
 import { Component, EnvironmentInjector, EventEmitter, Input ,Output} from '@angular/core';
 import { Student } from '../../models';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectIfAuthUserRoleIsAdmin } from 'src/app/store/auth/auth.selectors';
 
 
 @Component({
@@ -10,6 +13,13 @@ import { Student } from '../../models';
 export class StudentsTableComponent {
   displayedColumns: string[] = ['id','name','email', 'gender', 'country', 'actions'];
  
+  public isAdmin$ :  Observable<boolean> ;
+
+  constructor(private store: Store ){
+
+    this.isAdmin$= this.store.select(selectIfAuthUserRoleIsAdmin);
+  }
+
   @Input()
   dataSource: Student[] = [];
 

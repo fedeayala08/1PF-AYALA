@@ -1,22 +1,40 @@
 {
   "users": [
     {
-      "id": 1,
       "name": "Federico",
       "surname": "Martinez",
       "email": "fede@fede.com",
-      "password": "1234",
+      "password": "12345",
       "token": "hjkloiu873iur9oU83P9",
-      "role": "Administrador"
+      "role": "ADMINISTRADOR",
+      "id": 1
     },
     {
-      "id": 2,
       "name": "Julia",
-      "surname": "Quimey",
-      "email": "JK@gmail.com",
+      "surname": "Quimeya",
+      "email": "JKQ@gmail.com",
       "password": "1234Nurse",
+      "role": "TESTER",
       "token": "peIloiud73ttr4oUd339",
-      "role": "Tester"
+      "id": 2
+    },
+    {
+      "name": "Andrea",
+      "surname": "Paer",
+      "email": "andre@gmail.com",
+      "password": "12387443",
+      "token": "hefEUZdJTK666wAHAEZM",
+      "role": "TESTER",
+      "id": 3
+    },
+    {
+      "name": "Marcos",
+      "surname": "Plaen",
+      "email": "mplaen@gmail.com",
+      "password": "43829URE",
+      "token": "hJvo0Mk5DRupaKT0Lzvn",
+      "role": "USER",
+      "id": 4
     }
   ],
   "students": [
@@ -29,7 +47,7 @@
       "country": "Argentina"
     },
     {
-      "name": "Maria",
+      "name": "Mariano",
       "surname": "Carrillo",
       "email": "jca@gmail.com",
       "gender": "F",
@@ -43,6 +61,14 @@
       "email": "jm23@hotmail.com",
       "country": "Argentina",
       "id": 3
+    },
+    {
+      "name": "Mariel",
+      "surname": "Sona",
+      "gender": "F",
+      "email": "ms@gmail.com",
+      "country": "Ecuador",
+      "id": 4
     }
   ],
   "courses": [
@@ -71,5 +97,4 @@
       "id": 3
     }
   ]
-  
 }

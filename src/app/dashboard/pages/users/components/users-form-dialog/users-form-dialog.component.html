@@ -51,23 +51,15 @@
         </mat-form-field>
       </div>
 
-      <div class="field col-6">
-        <mat-form-field class="w-full" appearance="outline">
-          <mat-label>Token</mat-label>
-          <input [formControl]="tokenControl" matInput type="text" name="token"/>
-          <mat-error *ngFor="let error of tokenControl.errors | keyvalue">
-            {{ error | controlErrorMessage }}
-          </mat-error>
-        </mat-form-field>
-      </div>
+  
       
       <div class="col-6 field">
           <mat-form-field>
               <mat-label>Role</mat-label>
                   <mat-select formControlName="role" name="role">
-                      <mat-option value="Administrador">Administrador</mat-option>
-                      <mat-option value="Operador">Operador</mat-option>
-                      <mat-option value="Tester">Tester</mat-option>
+                      <mat-option value="ADMINISTRADOR">Administrador</mat-option>
+                      <mat-option value="USER">Usuario</mat-option>
+                      <mat-option value="TESTER">Tester</mat-option>
                   </mat-select>
   
                   <mat-error *ngFor="let error of roleControl.errors | keyvalue">

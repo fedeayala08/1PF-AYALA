@@ -16,7 +16,6 @@ export class UsersFormDialogComponent {
   surnameControl = new FormControl<string | null>(null, [Validators.required]);
   emailControl = new FormControl<string | null>(null, [Validators.required ,Validators.email]);
   passwordControl = new FormControl<string | null>(null, [Validators.required, Validators.minLength(5)]);
-  tokenControl = new FormControl<string | null>(null, [Validators.required]);
   roleControl = new FormControl<string | null>(null, [Validators.required]);
 
   userForm = new FormGroup({
@@ -24,7 +23,6 @@ export class UsersFormDialogComponent {
     surname: this.surnameControl,
     email: this.emailControl,
     password: this.passwordControl,
-    token: this.tokenControl,
     role: this.roleControl
   });
 
@@ -38,7 +36,6 @@ export class UsersFormDialogComponent {
       this.surnameControl.setValue(this.data.surname);
       this.emailControl.setValue(this.data.email);
       this.passwordControl.setValue(this.data.password);
-      this.tokenControl.setValue(this.data.token);
       this.roleControl.setValue(this.data.role);
       
     }
@@ -48,7 +45,15 @@ export class UsersFormDialogComponent {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
     } else {
-      this.dialogRef.close(this.userForm.value);
+
+      const payload:any = {
+        ...this.userForm.value
+      }
+
+      if(this.editingUser){
+        payload['token']= this.editingUser.token;
+      }
+      this.dialogRef.close(payload);
     }
   }
 }

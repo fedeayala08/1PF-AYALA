@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Student } from './models';
 import { Observable } from 'rxjs';
 import { StudentService } from 'src/app/core/services/student.service';
+import { Store } from '@ngrx/store';
+import { selectIfAuthUserRoleIsAdmin } from 'src/app/store/auth/auth.selectors';
 
 @Component({
   selector: 'app-students',
@@ -13,13 +15,15 @@ import { StudentService } from 'src/app/core/services/student.service';
 export class StudentsComponent {
   public students: Observable<Student[]> ;
   public loading= false;
+  public isAdmin$ :  Observable<boolean> ;
 
   constructor(private matDialog: MatDialog,
-              private studentService: StudentService) {
+              private studentService: StudentService,
+              private store: Store) {
     this.studentService.loadStudents();
     this.students= this.studentService.getStudents();
+    this.isAdmin$= this.store.select(selectIfAuthUserRoleIsAdmin);
   }
-
 
   onCreateStudent(): void {
     this.matDialog

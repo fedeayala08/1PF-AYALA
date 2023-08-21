@@ -66,7 +66,7 @@ export class UserService {
   }
 
   updateUserById( id: number, userUpdated : UpdateUserData):void{
-    this.httpClient.put(environment.baseApiUrl + 'users/' + id, userUpdated).subscribe({
+    this.httpClient.put(environment.baseApiUrl + '/users/' + id, userUpdated).subscribe({
       next: () => {this.loadUsers();
       this.notiService.showSuccess('Usuario actualizado');
       }

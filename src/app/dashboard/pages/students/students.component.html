@@ -1,5 +1,5 @@
 <div class="mb-5">
-    <button (click)="onCreateStudent()" mat-flat-button color="primary" type="button">
+    <button [disabled]="!(isAdmin$ | async)" (click)="onCreateStudent()" mat-flat-button color="primary" type="button">
       <mat-icon>add</mat-icon>
       Crear alumno
     </button>
