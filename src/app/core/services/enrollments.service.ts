@@ -16,11 +16,17 @@ export class EnrollmentsService {
     return this.httpClient.get<Enrollment[]>(environment.baseApiUrl + `/enrollments?_expand=course&studentId=${studentId}`)
   }
 
-  deleteStudentById(enrollment:Enrollment): void{
+  getEnrolmentsByCourseId(courseId: number): Observable<Enrollment[]> {
+    return this.httpClient.get<Enrollment[]>(environment.baseApiUrl + `/enrollments?_expand=student&courseId=${courseId}`)
+  }
+
+  deleteEnrollmentById(enrollment:Enrollment): void{
     this.httpClient.delete(environment.baseApiUrl + '/enrollments/' + enrollment.id).subscribe({
       next: () => {
       this.notifier.showSuccess('Inscripcion eliminada');
       }
     })
   }
+
+  
 }

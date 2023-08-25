@@ -3,8 +3,6 @@ import { Student } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotifierService } from 'src/app/core/services/notifier.service';
 import { StudentService } from 'src/app/core/services/student.service';
-import { Course } from '../../../courses/models';
-import { CourseService } from 'src/app/core/services/course.service';
 import { Enrollment } from '../../../enrollment/models';
 import { EnrollmentsService } from 'src/app/core/services/enrollments.service';
 
@@ -18,7 +16,7 @@ export class StudentDetailComponent {
   public student : Student | undefined = undefined;
   public studentId?:number;
 
-  displayedColumns= ['id','title','description','actions'];
+  displayedColumns= ['title','description','actions'];
   enrollments: Enrollment[]=[];
 
   constructor(
@@ -62,7 +60,7 @@ export class StudentDetailComponent {
   OnDeleteCourseFormEnrollment(enrollmentToDelete: Enrollment): void{
 
     if(confirm(`Se eliminara la inscription`)){
-      this.enrollmentService.deleteStudentById(enrollmentToDelete);
+      this.enrollmentService.deleteEnrollmentById(enrollmentToDelete);
       this.loadEnrollments();
     }
     

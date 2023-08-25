@@ -15,6 +15,9 @@ export class HomeComponent {
   constructor(private studentService: StudentService,
               private courseService: CourseService){
 
+    this.studentService.loadStudents();
+    this.courseService.loadCourses();
+    
     this.studentService.getStudents().subscribe({
       next: (s)=> {
         this.students= s.length;

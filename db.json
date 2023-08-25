@@ -3,18 +3,18 @@
     {
       "name": "Federico",
       "surname": "Martinez",
-      "email": "fede@fede.com",
+      "email": "admin@admin.com",
       "password": "12345",
-      "token": "hjkloiu873iur9oU83P9",
       "role": "ADMINISTRADOR",
+      "token": "hjkloiu873iur9oU83P9",
       "id": 1
     },
     {
       "name": "Julia",
       "surname": "Quimeya",
-      "email": "JKQ@gmail.com",
-      "password": "1234Nurse",
-      "role": "TESTER",
+      "email": "user@user.com",
+      "password": "12345",
+      "role": "USER",
       "token": "peIloiud73ttr4oUd339",
       "id": 2
     },

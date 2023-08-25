@@ -1,7 +1,7 @@
 <h1 mat-dialog-title> 
     {{
         editingCourse ? 'Editando el curso ' + editingCourse.title   
-      :"Crear courso"
+      :"Crear curso"
     }}
   </h1>
   
@@ -37,6 +37,10 @@
             <mat-option [value]="subject.id"  *ngFor="let subject of subjectOptions">
               {{ subject.id + '-' + subject.name }}
             </mat-option>
+
+            <mat-error *ngFor="let error of subjectIdControl.errors | keyvalue">
+              {{ error | controlErrorMessage }}
+            </mat-error>
     
           </mat-select>
         </mat-form-field>
