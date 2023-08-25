@@ -20,6 +20,10 @@ import { adminGuard } from '../core/guards/admin.guard';
           loadChildren: () => import('./pages/students/students.module').then((m) => m.StudentsModule),
         },
         {
+          path: 'enrollment',
+          loadChildren: () => import('./pages/enrollment/enrollment.module').then((m) => m.EnrollmentModule),
+        },
+        {
           path: 'users',
           canActivate: [adminGuard],
           loadChildren: () => import('./pages/users/users.module').then((m) => m.UsersModule),

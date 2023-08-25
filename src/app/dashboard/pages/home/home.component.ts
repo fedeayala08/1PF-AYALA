@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Student } from '../students/models';
 import { StudentService } from 'src/app/core/services/student.service';
 import { CourseService } from 'src/app/core/services/course.service';
 

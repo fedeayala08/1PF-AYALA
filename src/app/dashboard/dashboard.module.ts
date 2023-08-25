@@ -13,7 +13,7 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { CoursesModule } from './pages/courses/courses.module';
 import { UsersModule } from './pages/users/users.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { SubjectsModule } from './pages/subjects/subjects.module';
+import { EnrollmentModule } from './pages/enrollment/enrollment.module';
  
 
 @NgModule({
@@ -30,10 +30,11 @@ import { SubjectsModule } from './pages/subjects/subjects.module';
     MatToolbarModule,
     MatIconModule,
     HomeModule,
+    EnrollmentModule,
     StudentsModule,
     CoursesModule,
     MatListModule,
-    UsersModule
+    UsersModule, 
   ],
   exports:[
     DashboardComponent

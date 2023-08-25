@@ -96,5 +96,22 @@
       "endDate": "2023-10-26T22:00:00.000Z",
       "id": 3
     }
+  ],
+  "enrollments": [
+    {
+      "id": 1,
+      "studentId": 2,
+      "courseId": 1
+    },
+    {
+      "id": 2,
+      "studentId": 1,
+      "courseId": 1
+    },
+    {
+      "id": 3,
+      "studentId": 3,
+      "courseId": 2
+    }
   ]
 }
