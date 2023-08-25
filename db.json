@@ -107,11 +107,6 @@
       "id": 2,
       "studentId": 1,
       "courseId": 1
-    },
-    {
-      "id": 3,
-      "studentId": 3,
-      "courseId": 2
     }
   ]
 }
